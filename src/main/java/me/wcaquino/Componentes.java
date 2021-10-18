@@ -34,13 +34,13 @@ public class Componentes {
     @Test
     public void TextField() {
         dsl.escreve("elementosForm:nome", "Teste de escrita");
-        Assert.assertEquals("Teste de escrita", dsl.verificatexto("elementosForm:nome"));
+        Assert.assertEquals("Teste de escrita", dsl.verificavalor("elementosForm:nome"));
     }
 
     @Test
     public void Textarea() {
         dsl.escreve("elementosForm:sugestoes","Teste de escrita");
-        Assert.assertEquals("Teste de escrita", dsl.verificatexto("elementosForm:sugestoes"));
+        Assert.assertEquals("Teste de escrita", dsl.verificavalor("elementosForm:sugestoes"));
 
     }
 
@@ -58,20 +58,20 @@ public class Componentes {
 
     @Test
     public void Combobox() {
-        dsl.SelecionarCombo("elementosForm:escolaridade", "2o grau completo");
-        Assert.assertEquals("2o grau completo", dsl.ObterValorAtualcombo("elementosForm:escolaridade"));
+        dsl.selecionarCombo("elementosForm:escolaridade", "2o grau completo");
+        Assert.assertEquals("2o grau completo", dsl.obterValorAtualcombo("elementosForm:escolaridade"));
     }
 
     @Test
     public void VerificarValoresComboBox() {
-        Assert.assertEquals(8, dsl.QuantidadeDeOpcoes("elementosForm:escolaridade"));
+        Assert.assertEquals(8, dsl.obterQuantidadeOpcoesCombo("elementosForm:escolaridade"));
         Assert.assertTrue(dsl.verificarOpcaoCombo("elementosForm:escolaridade", "Mestrado"));
     }
     @Test
     public void VerificarComboMulti() {
-        dsl.SelecionarCombo("elementosForm:esportes", "Natacao");
-        dsl.SelecionarCombo("elementosForm:esportes", "Natacao");
-        dsl.SelecionarCombo("elementosForm:esportes", "O que eh esporte?");
+        dsl.selecionarCombo("elementosForm:esportes", "Natacao");
+        dsl.selecionarCombo("elementosForm:esportes", "Natacao");
+        dsl.selecionarCombo("elementosForm:esportes", "O que eh esporte?");
         WebElement element = driver.findElement(By.id("elementosForm:esportes"));
         Select combo = new Select(element);
         List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
